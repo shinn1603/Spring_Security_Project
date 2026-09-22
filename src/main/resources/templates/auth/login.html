@@ -3,50 +3,46 @@
  xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
- <title>Đăng nhập</title>
+ <title>Đăng nhập - Yain shop</title>
  <meta name="viewport"
  content="width=device-width, initial-scale=1">
  <link rel="stylesheet" th:href="@{/css/app.css}">
 </head>
 <body class="auth-page">
 <div class="auth-card">
-<h2>Đăng nhập</h2>
-<div th:if="${param.error}">
- <p style="color:red">
- Username/email hoặc password không đúng
- </p>
-</div>
-<div th:if="${param.logout}">
- <p style="color:green">
- Bạn đã đăng xuất
- </p>
-</div>
-<form th:action="@{/login}"
- method="post">
- <div>
- <label>
- Username hoặc Email
- </label>
- <input
- type="text"
- name="username"
- placeholder="Username hoặc email"
- required>
+ <h1>Yain shop</h1>
+ <h2>Đăng nhập</h2>
+ <div th:if="${param.error}" class="alert error">
+  <p style="margin: 0;">Username/email hoặc password không đúng</p>
  </div>
- <div>
- <label>
- Password
- </label>
- <input
- type="password"
- name="password"
- placeholder="Password"
- required>
+ <div th:if="${param.logout}" class="alert success">
+  <p style="margin: 0;">Bạn đã đăng xuất thành công</p>
  </div>
- <button type="submit" class="btn primary full" style="margin-top: 15px;">
- Đăng nhập
- </button>
-</form>
+ <form th:action="@{/login}" method="post">
+  <div>
+   <label>Username hoặc Email</label>
+   <input
+    type="text"
+    name="username"
+    placeholder="Username hoặc email"
+    required
+    autofocus>
+  </div>
+  <div>
+   <label>Password</label>
+   <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    required>
+  </div>
+  <button type="submit" class="btn primary full" style="margin-top: 15px;">
+   Đăng nhập
+  </button>
+ </form>
+ <p style="margin-top: 15px; text-align: center;">
+  <a th:href="@{/}">Về trang chủ</a>
+ </p>
 </div>
 </body>
 </html>

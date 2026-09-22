@@ -40,19 +40,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authenticationProvider(authenticationProvider())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
                     "/login",
                     "/css/**",
                     "/js/**",
                     "/images/**",
-                    "/uploads/**",
-                    "/error",
-                    "/access-denied"
+                    "/uploads/**"
                 ).permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .requestMatchers("/admin/**")
+                .hasRole("ADMIN")
+                .anyRequest()
+                .authenticated()
             )
             .formLogin(form -> form
                 .loginPage("/login")
@@ -67,8 +66,7 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
-            )
-            .exceptionHandling(ex -> ex.accessDeniedPage("/access-denied"));
+            );
 
         return http.build();
     }

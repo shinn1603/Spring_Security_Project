@@ -10,9 +10,4 @@ public class AuthController {
     public String login() {
         return "auth/login";
     }
-
-    @org.springframework.web.bind.annotation.RequestMapping("/access-denied")
-    public String accessDenied() {
-        return "error/403";
-    }
 }

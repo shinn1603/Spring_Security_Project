@@ -9,16 +9,17 @@
 <body>
 <main layout:fragment="content" class="container">
  <div class="panel">
- <h1>
- Trang chủ Yain shop
- </h1>
- <p>
- Xin chào
- <strong
- th:text="${#authentication.principal.fullName}">
- User
- </strong>
- </p>
+  <h1>
+   Trang chủ Yain shop
+  </h1>
+  <p>
+   Xin chào
+   <strong
+    th:text="${#authentication.principal.fullName}" style="color: #2563eb;">
+    User
+   </strong>
+  </p>
+  <p>Chào mừng bạn đã đăng nhập thành công vào hệ thống bảo mật bằng Spring Security!</p>
  </div>
 </main>
 </body>
