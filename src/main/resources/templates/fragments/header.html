@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi"
+ xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="topbar">
+ <nav style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+ <a th:href="@{/}" style="color:#fff; text-decoration:none; font-weight:800; font-size:20px;">
+ Yain shop
+ </a>
+ <div th:if="${#authorization.expression('isAuthenticated()')}" class="account" style="display:flex; align-items:center; gap:8px;">
+ <!-- Avatar -->
+ <img
+ th:src="${#authentication.principal.images != null
+ and !#strings.isEmpty(#authentication.principal.images)
+ ? #authentication.principal.images
+ : '/images/avatar-default.png'}"
+ alt="Avatar"
+ width="40"
+ height="40"
+ style="border-radius:50%; object-fit:cover; vertical-align:middle; border:2px solid #fff;">
+ <!-- Full name -->
+ <span
+ th:text="${#authentication.principal.fullName}" style="font-weight:600;">
+ Nguyễn Văn A
+ </span>
+ <!-- Username -->
+ <span
+ th:text="'(' + ${#authentication.principal.username} + ')'" style="color:#cbd5e1;">
+ (nguyenvana)
+ </span>
+ <!-- Email -->
+ <span
+ th:text="${#authentication.principal.email}" style="color:#94a3b8; font-size:13px;">
+ email@gmail.com
+ </span>
+ <!-- Role -->
+ <span
+ th:text="${#authentication.principal.role}" style="background:#2563eb; color:#fff; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:bold;">
+ ROLE_USER
+ </span>
+ <!-- Logout -->
+ <form
+ th:action="@{/logout}"
+ method="post"
+ style="display:inline">
+ <button type="submit" class="link-button">
+ Đăng xuất
+ </button>
+ </form>
+ </div>
+ <div th:unless="${#authorization.expression('isAuthenticated()')}" class="account">
+ <a th:href="@{/login}" class="link-button" style="text-decoration:none;">
+ Đăng nhập
+ </a>
+ </div>
+ </nav>
+</header>
+</body>
+</html>
