@@ -37,30 +37,28 @@ public class DataInitializer {
                                     .build()
                     ));
 
-            if (userRepository.findByUsername("user01").isEmpty()) {
-                User user = User.builder()
-                        .username("user01")
-                        .email("user01@gmail.com")
-                        .password(passwordEncoder.encode("123456"))
-                        .fullName("Nguyễn Hữu Trung")
-                        .images("/images/user.png")
-                        .role(userRole)
-                        .enabled(true)
-                        .build();
-                userRepository.save(user);
-            }
-
             if (userRepository.findByUsername("thonp").isEmpty()) {
                 User admin = User.builder()
                         .username("thonp")
                         .email(adminEmail.toLowerCase())
                         .password(passwordEncoder.encode(adminPassword))
                         .fullName("Nguyễn Phước Thọ")
-                        .images("/images/user.png")
                         .role(adminRole)
                         .enabled(true)
                         .build();
                 userRepository.save(admin);
+            }
+
+            if (userRepository.findByUsername("user01").isEmpty()) {
+                User user = User.builder()
+                        .username("user01")
+                        .email("user01@gmail.com")
+                        .password(passwordEncoder.encode("123456"))
+                        .fullName("Nguyễn Hữu Trung")
+                        .role(userRole)
+                        .enabled(true)
+                        .build();
+                userRepository.save(user);
             }
         };
     }

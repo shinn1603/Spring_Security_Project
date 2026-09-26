@@ -1,16 +1,17 @@
 package vn.yain.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 import vn.yain.dto.UserDTO;
 import vn.yain.entity.User;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+ unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
+ @Mapping(target = "roleName", source = "role.name")
+ UserDTO toDTO(User entity);
 
-    @Mapping(
-        target = "roleName",
-        source = "role.name"
-    )
-    UserDTO toDTO(User user);
+ @Mapping(target = "role", ignore = true)
+ @Mapping(target = "products", ignore = true)
+ @Mapping(target = "password", ignore = true)
+ User toEntity(UserDTO dto);
 }
